@@ -1,4 +1,5 @@
 import React from "react";
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 export default function Navbar() {
   return (
@@ -32,18 +33,21 @@ export default function Navbar() {
 
       {/* Auth buttons */}
       <div className="flex items-center gap-4 text-sm">
-        <a
-          href="#"
-          className="text-gray-300 hover:text-white transition-colors"
-        >
-          Log in
-        </a>
-        <a
-          href="#"
-          className="px-4 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-        >
-          Get started
-        </a>
+        <SignedOut>
+          <SignInButton mode="modal">
+            <button className="text-gray-300 hover:text-white transition-colors">
+              Log in
+            </button>
+          </SignInButton>
+          <SignInButton mode="modal">
+            <button className="px-4 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              Get started
+            </button>
+          </SignInButton>
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
       </div>
     </nav>
   );
